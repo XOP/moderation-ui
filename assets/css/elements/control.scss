@@ -1,0 +1,24 @@
+/* Control
+---------------------------------------------------------------------------------- */
+
+/*
+cssg
+
+	control					__negative | __positive
+		control_btn
+			control_ico
+*/
+
+.control {
+	flex: 1 0 auto;
+	text-align: center;
+	color: $c-darkest;
+	}
+
+.control_btn {
+	width: 60%;
+	font-size: $fs-hero;
+	}
+
+/* /Control
+---------------------------------------------------------------------------------- */

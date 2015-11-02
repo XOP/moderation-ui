@@ -1,0 +1,134 @@
+/* Variables
+---------------------------------------------------------------------------------- */
+
+/* Vars
+-------------------------------------------------- */
+
+/* Font-family */
+$ff-main: Tahoma, Verdana, sans-serif;
+$ff-alt: Helvetica, Arial, sans-serif;
+
+
+/* Font-size */
+$fs-normal: 14px;
+
+$fs-xs: 10px;
+$fs-s: 12px;
+$fs-l: 16px;
+$fs-xl: 18px;
+
+$fs-h1: 32px;
+$fs-hero: 48px;
+
+
+/* Colors */
+$c-bg: #444;
+$c-base: #fafafa;
+$c-dark: #999;
+$c-darkest: #222;
+
+$c-gray: #eeeeee;
+$c-gray-light: #f0f0f0;
+$c-gray-dark: #cccccc;
+
+$c-yellow: #ffc100;
+$c-blue: #099FD9;
+$c-blue-dark: #4a93d9;
+
+$c-brand-main: $c-blue;
+$c-brand-aux: $c-yellow;
+
+
+/* Line-height */
+$lh-normal: 1.6;
+$lh-head: 1.2;
+$lh-hero: 1.1;
+$lh-reset: 1;
+
+
+/* Offset */
+$offset-step: 4px;
+
+$offset: $offset-step;
+$offset-2: calc($offset * 2);
+$offset-3: calc($offset * 3);
+$offset-4: calc($offset * 4);
+$offset-5: calc($offset * 5);
+
+/* Grid */
+$grid-step: 10px;
+
+$grid: $grid-step;
+$grid-2: calc($grid * 2);
+$grid-3: calc($grid * 3);
+$grid-4: calc($grid * 4);
+$grid-5: calc($grid * 5);
+
+
+/* Border-radius */
+$rad-normal: 3px;
+$rad-moder: 8px;
+
+
+/* Shadow */
+$sh-normal: 0 1px 3px rgba(0,0,0,.7);
+$sh-light: 0 2px 4px -2px rgba(0,0,0,.3);
+
+
+/* Container */
+$width-normal: 1000px;
+
+
+/* Column */
+$col: calc($grid * 6);
+$col-gap: $grid-2;
+
+
+/* Paths */
+$path-img: assets/img/;
+
+
+/* Media queries */
+@custom-media --s screen and (min-width: 550px);
+@custom-media --m screen and (min-width: 750px);
+@custom-media --n screen and (min-width: 1000px);
+
+/* /Vars */
+
+
+/* Mixins
+-------------------------------------------------- */
+
+@define-mixin trunc {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	}
+
+@define-mixin wrap {
+	display: block;
+	max-width: 100%;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	}
+
+@define-mixin font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+
+@define-mixin cover {
+	top: 0; left: 0; right: 0; bottom: 0;
+	}
+
+@define-mixin preloader {
+	min-height: 50px;
+	&:empty {
+		background: $c-white url(../img/anim/spinner.gif) no-repeat 50%;
+		}
+	}
+
+/* /Mixins */
+
+/* /Variables
+---------------------------------------------------------------------------------- */

@@ -1,0 +1,62 @@
+/* Base
+---------------------------------------------------------------------------------- */
+
+/* Core
+-------------------------------------------------- */
+
+html {
+    height: 100%;
+    }
+
+body {
+    min-height: 100%;
+	overflow-y: scroll;
+
+    font: normal $fs-normal/$lh-normal $ff-main;
+    color: $c-base;
+	background: $c-bg;
+    }
+
+/* /Core */
+
+
+/* Links
+-------------------------------------------------- */
+
+/*
+Link
+
+markup:
+<a href="#333" title="">Regular link</a>
+
+Styleguide 1
+*/
+
+a {
+    color: $c-light;
+
+    &:hover {
+        color: $c-blue;
+        }
+
+    &:active {
+        color: $c-yellow;
+        }
+    }
+
+/* /Links */
+
+
+/* Lists
+-------------------------------------------------- */
+
+ol, ul, menu {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	}
+
+/* /Lists */
+
+/* /Base
+---------------------------------------------------------------------------------- */

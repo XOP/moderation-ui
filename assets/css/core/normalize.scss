@@ -1,0 +1,26 @@
+/* Normalize
+---------------------------------------------------------------------------------- */
+
+/*
+    n-{class}
+
+    normalization classes
+    return elements to initial state after reset
+*/
+
+/* List */
+.n-list {
+    margin: $grid 0;
+    padding-left: $grid-2;
+
+	ul& {
+		list-style: outside square;
+		}
+
+	ol& {
+		list-style: outside decimal;
+		}
+    }
+
+/* /Normalize
+---------------------------------------------------------------------------------- */

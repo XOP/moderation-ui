@@ -1,2 +1,3 @@
-# moderation-ui
-Image moderation interface
+# Moderation UI
+
+> Images moderation interface

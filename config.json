@@ -1,0 +1,32 @@
+{
+    "port" : 4000,
+    "title" : "Image Moderation",
+    "paths" : {
+        "css" : {
+            "src" : "assets/css",
+            "dest" : "public/css"
+        },
+        "sg" : {
+            "dest" : "public/styleguide"
+        },
+        "sprites" : {
+            "src" : "assets/sprites",
+            "dest" : "public"
+        },
+        "js" : {
+            "src" : "assets/js",
+            "dest" : "public/js"
+        },
+        "tpl" : {
+            "src" : "assets/tpl/src",
+            "dest" : "assets/tpl/dist"
+        },
+        "img" : {
+            "src" : "assets/img",
+            "dest" : "public/img"
+        },
+        "deps" : {
+            "normalize" : "node_modules/normalize.css"
+        }
+    }
+}
