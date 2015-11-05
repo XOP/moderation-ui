@@ -11,7 +11,9 @@ cssg
 
 .scene {
 	height: 50vh;
-	background: $c-brand-main;
+
+	background: $c-darkest;
+	border: 4px solid $c-brand-dark;
 	}
 
 /* /Moderation images scene

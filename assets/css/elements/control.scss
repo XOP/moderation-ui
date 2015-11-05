@@ -6,7 +6,6 @@ cssg
 
 	control					__negative | __positive
 		control_btn
-			control_ico
 */
 
 .control {
@@ -16,8 +15,39 @@ cssg
 	}
 
 .control_btn {
-	width: 60%;
-	font-size: $fs-hero;
+	height: 10rem;
+	width: 10rem;
+
+	border: 1rem solid transparent;
+	border-radius: 50%;
+
+	background-color: transparent;
+	background-image: svg("$(path-img)buttons/skip");
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+
+	-webkit-appearance: none;
+
+	transition: transform .15s ease-in-out;
+	transform: scale(1);
+
+	&:hover {
+		transform: scale(1.2);
+		}
+
+	&:active {
+		transform: scale(.95);
+		}
+
+	// context mod
+	.control__negative & {
+		background-image: svg("$(path-img)buttons/no");
+		}
+
+	// context mod
+	.control__positive & {
+		background-image: svg("$(path-img)buttons/yes");
+		}
 	}
 
 /* /Control

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15588) - http://www.bohemiancoding.com/sketch -->
+    <title>button_3</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="WEB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Moderator2" sketch:type="MSArtboardGroup" transform="translate(-770.000000, -709.000000)">
+            <g id="Buttons" sketch:type="MSLayerGroup" transform="translate(349.000000, 709.000000)">
+                <g id="button_3" transform="translate(421.000000, 0.000000)" sketch:type="MSShapeGroup">
+                    <g id="Shape-+-Path" fill="#C5C5C5">
+                        <path d="M45.00001,0 C20.14674,0 0,20.1509 0,45.00272 C0,69.85452 20.14674,90.00002 45.00001,90.00002 C69.85326,90.00002 90,69.85452 90,45.00272 C90,20.1509 69.85326,0 45.00001,0 L45.00001,0 Z" id="Shape"></path>
+                    </g>
+                    <path d="M59.0311489,41.343012 L58.818849,41.0836126 L41.3364483,23.6012119 C39.1993902,21.4662627 35.7386215,21.4662627 33.6022663,23.6012119 C31.4659112,25.73827 31.4659112,29.2004447 33.6022663,31.3367998 L47.2667846,44.9999121 L33.6022663,58.6637274 C31.4659112,60.8007855 31.4659112,64.2629602 33.6022663,66.4000183 C34.6707954,67.4664385 36.0697249,68 37.4693573,68 C38.8689898,68 40.2679193,67.4657355 41.3364483,66.4000183 L57.1584111,50.5759466 L62.7253069,45.039279 L59.0311489,41.343012 Z" id="Shape" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
