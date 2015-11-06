@@ -10,7 +10,11 @@ cssg
 
 .main {
 	margin: 0 auto;
-	width: 50%;
+	min-width: 50%;
+
+	@media(--n){
+		max-width: 50%
+		}
 	}
 
 /* /Main
