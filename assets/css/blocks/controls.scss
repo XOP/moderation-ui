@@ -12,7 +12,10 @@ cssg
 	display: flex;
 	flex-wrap: nowrap;
 
-	margin: $grid-2 0;
+	@media(--m){
+		width: calc($media-m - $grid-2 * 2);
+		margin: 0 auto;
+		}
 	}
 
 /* /Controls list

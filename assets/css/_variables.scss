@@ -56,6 +56,7 @@ $rad-moder: 8px;
 
 
 /* Shadow */
+$sh-heavy: 0 1px 8px 1px rgba(0,0,0,.6);
 $sh-normal: 0 1px 3px rgba(0,0,0,.7);
 $sh-light: 0 2px 4px -2px rgba(0,0,0,.3);
 
@@ -74,6 +75,10 @@ $path-img: assets/img/;
 
 
 /* Media queries */
+$media-s: 550px;
+$media-m: 750px;
+$media-n: 1000px;
+
 @custom-media --s screen and (min-width: 550px);
 @custom-media --m screen and (min-width: 750px);
 @custom-media --n screen and (min-width: 1000px);

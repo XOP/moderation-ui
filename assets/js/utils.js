@@ -1,4 +1,4 @@
-module.exports = function(){
+module.exports = function() {
 
     /**
      * Returns first element that matches CSS selector {expr}.
@@ -29,5 +29,5 @@ module.exports = function(){
     return {
         find: find,
         findAll: findAll
-    }
+    };
 };

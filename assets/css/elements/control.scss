@@ -11,14 +11,15 @@ cssg
 .control {
 	flex: 1 0 auto;
 	text-align: center;
-	color: $c-darkest;
 	}
 
-.control_btn {
-	height: 10rem;
-	width: 10rem;
+// todo: fit screen
 
-	border: 1rem solid transparent;
+.control_btn {
+	height: 6rem;
+	width: 6rem;
+
+	border: 0 none;
 	border-radius: 50%;
 
 	background-color: transparent;
@@ -28,11 +29,13 @@ cssg
 
 	-webkit-appearance: none;
 
-	transition: transform .15s ease-in-out;
+	transition: transform .1s ease-out;
 	transform: scale(1);
 
+	outline: none;
+
 	&:hover {
-		transform: scale(1.2);
+		transform: scale(1.05);
 		}
 
 	&:active {
