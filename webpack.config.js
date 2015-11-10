@@ -26,15 +26,22 @@ var config = {
             {test: /modernizr-custom\.js$/, loaders: ['script-loader']}
         ],
         loaders: [
+//            {
+//                test: /\.js$/,
+//                exclude: [
+//                    path.resolve(__dirname, "assets/js/lib"),
+//                    /node_modules/
+//                ],
+//                loader: 'eslint-loader'
+//            },
             {
-                test: /\.js(x)?$/,
-                exclude: [
-                    path.resolve(__dirname, "assets/js/lib"),
-                    /node_modules/
-                ],
-                loader: 'eslint-loader'
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015']
+                }
             },
-            {test: /\.jsx$/, loaders: ['jsx-loader', 'imports-loader?React=react&ReactDOM=react-dom']},
             {test: /\.json$/, loaders: ['json-loader']}
         ]
     },

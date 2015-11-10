@@ -3,12 +3,13 @@
  *
  */
 
-require('modernizr-custom');
+import 'modernizr-custom';
 
-var utils = require('utils')();
-var scene = require('scene');
+import * as utils from 'utils';
+import * as scene from 'scene';
 
 var inAction = false;
+
 
 //
 // scene preloading
