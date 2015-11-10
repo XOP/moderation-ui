@@ -3,45 +3,53 @@
  *
  */
 
+require('modernizr-custom');
+
 var utils = require('utils')();
+var scene = require('scene');
+
+var inAction = false;
 
 //
-// images
-var images = utils.findAll('.js-image');
+// scene preloading
+var container = utils.find('.js-scene');
 
-images.forEach(function(image, i) {
-    var img = new Image();
-
-    image.appendChild(img);
-    img.src = 'img/test/' + formatImageNumber(i) + '.jpg';
-});
+scene.addImage(container).classList.add('__current');
+scene.addImage(container).classList.add('__next');
 
 //
-// controls
+// controls binding
 var controlYes = utils.find('.js-control_yes');
 var controlNo = utils.find('.js-control_no');
 var controlSkip = utils.find('.js-control_skip');
 
-controlYes.addEventListener('click', growl);
-controlNo.addEventListener('click', growl);
-controlSkip.addEventListener('click', growl);
+controlYes.addEventListener('click', nextImage);
+controlNo.addEventListener('click', nextImage);
+controlSkip.addEventListener('click', nextImage);
 
-/**
- * Just say something
- * @param e
- */
-function growl(e) {
-    e.preventDefault();
 
-    console.info(this.dataset.info);
+function nextImage() {
+    if(inAction) {
+        return false;
+    }
+
+    inAction = true;
+
+    var action = resolveAction.call(this);
+    var imageClass = scene.getImageClass(action);
+    var currentImage = scene.getCurrentImage();
+    var nextImage = scene.getNextImage();
+
+    currentImage.classList.add(imageClass);
+    setTimeout(function() {
+        currentImage.parentNode.removeChild(currentImage);
+        nextImage.classList.remove('__next');
+        nextImage.classList.add('__current');
+        scene.addImage(container).classList.add('__next');
+        inAction = false;
+    }, 1000);
 }
 
-/**
- * Format index with leading zero
- * @param n
- * @returns {*}
- */
-function formatImageNumber(n) {
-    n = n + 1;
-    return n > 9 ? n : '0' + n;
+function resolveAction() {
+    return this.dataset.info;
 }

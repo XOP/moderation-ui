@@ -7,6 +7,19 @@
 html {
     height: 100%;
 	overflow: hidden;
+	font-size: 6px;
+
+	@media(min-height: 550px) {
+		font-size: 7px;
+		}
+
+	@media(min-height: 650px) {
+		font-size: 8px;
+		}
+
+	@media(min-height: 780px) {
+		font-size: 10px;
+		}
     }
 
 body {

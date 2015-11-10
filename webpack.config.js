@@ -17,15 +17,21 @@ var config = {
     resolve: {
         root: srcPath,
         extensions: ['', '.js', '.jsx', '.json', '.html'],
-        modulesDirectories: ['node_modules', paths.js.src + '/app'],
+        modulesDirectories: ['node_modules', paths.js.src + '/app', paths.js.src + '/lib'],
         alias: {}
     },
     module: {
         noParse: [],
+        preLoaders: [
+            {test: /modernizr-custom\.js$/, loaders: ['script-loader']}
+        ],
         loaders: [
             {
                 test: /\.js(x)?$/,
-                exclude: /node_modules/,
+                exclude: [
+                    path.resolve(__dirname, "assets/js/lib"),
+                    /node_modules/
+                ],
                 loader: 'eslint-loader'
             },
             {test: /\.jsx$/, loaders: ['jsx-loader', 'imports-loader?React=react&ReactDOM=react-dom']},

@@ -11,6 +11,7 @@ cssg
 
 .scene {
 	position: relative;
+	backface-visibility: hidden;
 
 	// fixme: test value
 	background: rgba(255,255,255,.2);
@@ -22,14 +23,40 @@ cssg
 
 	text-align: center;
 
+	&.__current {
+		z-index: 20;
+		}
+
+	&.__next {
+		z-index: 10;
+		}
 
 	img {
-		height: 100%;
+		height: auto;
 		width: auto;
 		max-width: 100%;
+		max-height: 100%;
+
+		vertical-align: middle;
 
 		box-shadow: $sh-heavy;
+		transition: transform .8s ease-out, opacity .5s ease-out;
 		}
+
+		&.__yes img {
+			transform: translateX(100%);
+			opacity: 0;
+			}
+
+		&.__no img {
+			transform: translateX(-100%);
+			opacity: 0;
+			}
+
+		&.__skip img {
+			transform: translateY(-100%);
+			opacity: 0;
+			}
 	}
 
 /* /Moderation images scene

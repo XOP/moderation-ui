@@ -10,14 +10,15 @@ cssg
 
 .control {
 	flex: 1 0 auto;
+	align-self: center;
 	text-align: center;
 	}
 
 // todo: fit screen
 
 .control_btn {
-	height: 6rem;
-	width: 6rem;
+	height: 9rem;
+	width: 9rem;
 
 	border: 0 none;
 	border-radius: 50%;
@@ -28,6 +29,7 @@ cssg
 	background-repeat: no-repeat;
 
 	-webkit-appearance: none;
+	-webkit-tap-highlight-color: transparent;
 
 	transition: transform .1s ease-out;
 	transform: scale(1);
