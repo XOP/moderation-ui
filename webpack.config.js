@@ -23,7 +23,8 @@ var config = {
     module: {
         noParse: [],
         preLoaders: [
-            {test: /modernizr-custom\.js$/, loaders: ['script-loader']}
+            {test: /modernizr-custom\.js$/, loaders: ['script-loader']},
+            {test: /hammer\.js$/, loaders: ['script-loader']}
         ],
         loaders: [
 //            {

@@ -22,7 +22,7 @@ cssg
 
 	text-align: center;
 
-	transition: opacity .4s ease-in, transform .5s ease-in;
+	transition: opacity .3s, transform .4s ease-out;
 
 	&.__current {
 		z-index: 20;
@@ -39,12 +39,12 @@ cssg
 		}
 
 	&.__yes {
-		transform: translateX(100%);
+		transform: translateX(100%) rotateZ(15deg);
 		opacity: 0;
 		}
 
 	&.__no {
-		transform: translateX(-100%);
+		transform: translateX(-100%) rotateZ(-15deg);
 		opacity: 0;
 		}
 
@@ -62,23 +62,7 @@ cssg
 		vertical-align: middle;
 
 		box-shadow: $sh-heavy;
-		//transition: transform .8s ease-out, opacity .5s ease-out;
 		}
-
-		//&.__yes img {
-		//	transform: translateX(100%);
-		//	opacity: 0;
-		//	}
-        //
-		//&.__no img {
-		//	transform: translateX(-100%);
-		//	opacity: 0;
-		//	}
-        //
-		//&.__skip img {
-		//	transform: translateY(-100%);
-		//	opacity: 0;
-		//	}
 	}
 
 /* /Moderation images scene
