@@ -9,8 +9,19 @@ cssg
 */
 
 .controls {
+	position: relative;
+
 	display: flex;
 	flex-wrap: nowrap;
+
+	&.__disabled {
+		&:after {
+			@mixin cover;
+
+			content: "";
+			background: rgba(255, 255, 255, 0);
+		}
+	}
 
 	@media(--m){
 		width: calc($media-m - $grid-2 * 2);

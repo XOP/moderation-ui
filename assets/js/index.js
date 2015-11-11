@@ -3,54 +3,60 @@
  *
  */
 
+// init modernizr
 import 'modernizr-custom';
 
+// utils
 import * as utils from 'utils';
-import * as scene from 'scene';
 
-var inAction = false;
+// modules
+import * as scene from 'scene';
+import * as controls from 'controls';
+
+const ANIMATION_TIME = 500;
+
+let container = utils.find('.js-scene');
+let controlYes = utils.find('.js-control_yes');
+let controlNo = utils.find('.js-control_no');
+let controlSkip = utils.find('.js-control_skip');
 
 
 //
-// scene preloading
-var container = utils.find('.js-scene');
-
-scene.addImage(container).classList.add('__current');
-scene.addImage(container).classList.add('__next');
+// scene setup
+scene.addImage(container, '__current');
+scene.addImage(container, '__next');
 
 //
 // controls binding
-var controlYes = utils.find('.js-control_yes');
-var controlNo = utils.find('.js-control_no');
-var controlSkip = utils.find('.js-control_skip');
-
 controlYes.addEventListener('click', nextImage);
 controlNo.addEventListener('click', nextImage);
 controlSkip.addEventListener('click', nextImage);
 
 
 function nextImage() {
-    if(inAction) {
-        return false;
-    }
+    let action = controls.resolveAction(this);
+    let imageClass = scene.getImageClass(action);
+    let currentImage = scene.getCurrentImage();
+    let nextImage = scene.getNextImage();
 
-    inAction = true;
+    // block controls
+    controls.disable();
 
-    var action = resolveAction.call(this);
-    var imageClass = scene.getImageClass(action);
-    var currentImage = scene.getCurrentImage();
-    var nextImage = scene.getNextImage();
-
+    // apply action to current image
     currentImage.classList.add(imageClass);
-    setTimeout(function() {
-        currentImage.parentNode.removeChild(currentImage);
-        nextImage.classList.remove('__next');
-        nextImage.classList.add('__current');
-        scene.addImage(container).classList.add('__next');
-        inAction = false;
-    }, 1000);
-}
 
-function resolveAction() {
-    return this.dataset.info;
+    // update state of next image
+    scene.updateState(nextImage);
+
+    // animation
+    setTimeout(function() {
+        // remove current image
+        currentImage.parentNode.removeChild(currentImage);
+
+        // add next image to scene
+        scene.addImage(container, '__next');
+
+        // release button block
+        controls.enable();
+    }, ANIMATION_TIME);
 }

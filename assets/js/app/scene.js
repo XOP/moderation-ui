@@ -25,11 +25,11 @@ function formatImageNumber(n) {
  * @param parent
  * @returns {HTMLElement|*}
  */
-export function addImage(parent) {
+export function addImage(parent, klass) {
     var img = new Image();
     var imgWrap = document.createElement('div');
 
-    imgWrap.className = 'scene_img js-image';
+    imgWrap.className = 'scene_img js-image ' + klass;
     imgWrap.appendChild(img);
 
     var num = Math.round(Math.random() * (IMAGES_COLLECTION - 1) + 1);
@@ -44,12 +44,22 @@ export function addImage(parent) {
 
 
 /**
+ * Change state of image
+ * @param image
+ */
+export function updateState(image) {
+    image.classList.remove('__next');
+    image.classList.add('__current');
+}
+
+
+/**
  * CSS class depending on action
  * @param action
  * @returns {string}
  */
 export function getImageClass(action) {
-    return '__' + action.toLowerCase();
+    return '__' + action;
 }
 
 

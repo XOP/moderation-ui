@@ -56,7 +56,7 @@ $rad-moder: 8px;
 
 
 /* Shadow */
-$sh-heavy: 0 1px 8px 1px rgba(0,0,0,.6);
+$sh-heavy: 0 1px 12px 4px rgba(0,0,0,.8);
 $sh-normal: 0 1px 3px rgba(0,0,0,.7);
 $sh-light: 0 2px 4px -2px rgba(0,0,0,.3);
 
@@ -108,6 +108,7 @@ $media-n: 1000px;
     }
 
 @define-mixin cover {
+	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
 	}
 

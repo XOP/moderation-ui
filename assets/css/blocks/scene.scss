@@ -5,7 +5,7 @@
 cssg
 
 	scene
-		scene_img			__next
+		scene_img			( __next | __current ) ( __yes | __no | __skip )
 			<img>
 */
 
@@ -14,21 +14,43 @@ cssg
 	backface-visibility: hidden;
 
 	// fixme: test value
-	background: rgba(255,255,255,.2);
+	// background: rgba(255,255,255,.2);
 	}
 
 .scene_img {
 	@mixin cover;
-	position: absolute;
 
 	text-align: center;
 
+	transition: opacity .4s ease-in, transform .5s ease-in;
+
 	&.__current {
 		z-index: 20;
+
+		opacity: 1;
+		transform: scale(1);
 		}
 
 	&.__next {
 		z-index: 10;
+
+		opacity: 0;
+		transform: scale(0.4);
+		}
+
+	&.__yes {
+		transform: translateX(100%);
+		opacity: 0;
+		}
+
+	&.__no {
+		transform: translateX(-100%);
+		opacity: 0;
+		}
+
+	&.__skip {
+		transform: translateY(-100%);
+		opacity: 0;
 		}
 
 	img {
@@ -40,23 +62,23 @@ cssg
 		vertical-align: middle;
 
 		box-shadow: $sh-heavy;
-		transition: transform .8s ease-out, opacity .5s ease-out;
+		//transition: transform .8s ease-out, opacity .5s ease-out;
 		}
 
-		&.__yes img {
-			transform: translateX(100%);
-			opacity: 0;
-			}
-
-		&.__no img {
-			transform: translateX(-100%);
-			opacity: 0;
-			}
-
-		&.__skip img {
-			transform: translateY(-100%);
-			opacity: 0;
-			}
+		//&.__yes img {
+		//	transform: translateX(100%);
+		//	opacity: 0;
+		//	}
+        //
+		//&.__no img {
+		//	transform: translateX(-100%);
+		//	opacity: 0;
+		//	}
+        //
+		//&.__skip img {
+		//	transform: translateY(-100%);
+		//	opacity: 0;
+		//	}
 	}
 
 /* /Moderation images scene
