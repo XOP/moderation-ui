@@ -1,6 +1,6 @@
 {
   "name": "moderation-ui",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "stewiekillsloiss@gmail.com",
   "dependencies": {
     "hammerjs": "^2.0.4",
