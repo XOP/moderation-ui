@@ -1,7 +1,6 @@
 /**
  * Touch
  *
- *
  */
 
 
@@ -17,13 +16,13 @@ export function resolveAction(event) {
     let action;
 
     switch(event.type) {
-        case 'swipeleft':
+        case 'panleft':
             action = 'no';
             break;
-        case 'swiperight':
+        case 'panright':
             action = 'yes';
             break;
-        case 'swipeup':
+        case 'panup':
             action = 'skip';
             break;
     }

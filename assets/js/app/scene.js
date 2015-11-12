@@ -1,13 +1,15 @@
 /**
  * Scene
  *
- *
  */
 
 
 import * as utils from 'utils';
 
 const IMAGES_COLLECTION = 3;
+const CLAIMS_MAX = 20;
+
+let imageNumber = 1;
 
 
 /**
@@ -21,21 +23,44 @@ function formatImageNumber(n) {
 
 
 /**
+ * Basic formatter for claims string
+ * @param number
+ * @returns {string}
+ */
+function formatClaims(number) {
+    return number === 1 ? 'claim' : 'claims';
+}
+
+
+/**
+ * Demo url string
+ * @returns {*}
+ */
+function demoUrlFormatter() {
+    var num = Math.round(Math.random() * (IMAGES_COLLECTION - 1) + 1);
+    var imgNumber = formatImageNumber(num);
+
+    return `img/test/${imgNumber}.jpg`;
+}
+
+/**
  * Add image to scene
  * @param parent
  * @returns {HTMLElement|*}
  */
 export function addImage(parent, klass) {
-    var img = new Image();
-    var imgWrap = document.createElement('div');
+    let img = new Image();
+    let imgWrap = document.createElement('div');
+    let url = demoUrlFormatter();
 
     imgWrap.className = 'scene_img js-image ' + klass;
+
+    // mock data
+    imgWrap.dataset.claims = Math.round(Math.random() * CLAIMS_MAX);
+    imgWrap.dataset.number = imageNumber++;
+
+    // add image to scene
     imgWrap.appendChild(img);
-
-    var num = Math.round(Math.random() * (IMAGES_COLLECTION - 1) + 1);
-    var imgNumber = formatImageNumber(num);
-    var url = `img/test/${imgNumber}.jpg`;
-
     parent.appendChild(imgWrap);
     img.src = url;
 
@@ -78,4 +103,24 @@ export function getCurrentImage() {
  */
 export function getNextImage() {
     return utils.find('.js-image.__next');
+}
+
+
+/**
+ * Claims number counter
+ * @param claims
+ * @returns {string}
+ */
+export function getClaims(claims) {
+    return claims + ' ' + formatClaims(claims);
+}
+
+
+/**
+ * Current image number
+ * @param val
+ * @returns {*}
+ */
+export function getNumber(val) {
+    return val;
 }

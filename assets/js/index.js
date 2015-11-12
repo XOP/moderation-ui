@@ -17,9 +17,13 @@ import * as touch from 'touch';
 
 const ANIMATION_TIME = 300;
 const IS_TOUCH = Modernizr.touchevents;
-const SWIPE_VELOCITY = .25;
+const PAN_THRESHOLD = 80;
 
 let container = utils.find('.js-scene');
+
+let labelCurrent = utils.find('.js-label-current');
+let labelClaims = utils.find('.js-label-claims');
+
 let controlYes = utils.find('.js-control_yes');
 let controlNo = utils.find('.js-control_no');
 let controlSkip = utils.find('.js-control_skip');
@@ -30,16 +34,21 @@ let hammer = new Hammer(container);
 //
 // register touch events
 if(IS_TOUCH) {
-    hammer.get('swipe').set({
-        velocity: SWIPE_VELOCITY,
+    hammer.get('pan').set({
+        threshold: PAN_THRESHOLD,
         direction: Hammer.DIRECTION_ALL
     });
-    hammer.on('swipeleft swiperight swipeup', nextImage);
+    hammer.on('panleft panright panup', nextImage);
 }
 
 //
 // scene setup
-scene.addImage(container, '__current');
+
+// add current image
+let currentImage = scene.addImage(container, '__current');
+updateImageData(currentImage);
+
+// add next image
 scene.addImage(container, '__next');
 
 //
@@ -49,7 +58,12 @@ controlNo.addEventListener('click', nextImage);
 controlSkip.addEventListener('click', nextImage);
 
 
+/**
+ * Manage next image
+ * @param evt
+ */
 function nextImage(evt) {
+    // resolve action type
     let action;
 
     if(evt.type === 'click') {
@@ -59,6 +73,8 @@ function nextImage(evt) {
     }
 
     let imageClass = scene.getImageClass(action);
+
+    // get images
     let currentImage = scene.getCurrentImage();
     let nextImage = scene.getNextImage();
 
@@ -71,7 +87,10 @@ function nextImage(evt) {
     // update state of next image
     scene.updateState(nextImage);
 
-    // animation
+    // update image data
+    updateImageData(nextImage);
+
+    // animation finally
     setTimeout(function() {
         // remove current image
         currentImage.parentNode.removeChild(currentImage);
@@ -82,4 +101,14 @@ function nextImage(evt) {
         // release button block
         controls.enable();
     }, ANIMATION_TIME);
+}
+
+
+/**
+ * Update image data
+ * @param image
+ */
+function updateImageData(image) {
+    labelClaims.innerText = scene.getClaims(image.dataset.claims);
+    labelCurrent.innerText = scene.getNumber(image.dataset.number);
 }
