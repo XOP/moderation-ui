@@ -15,16 +15,12 @@ import * as utils from 'utils';
 export function resolveAction(event) {
     let action;
 
-    switch(event.type) {
-        case 'panleft':
-            action = 'no';
-            break;
-        case 'panright':
-            action = 'yes';
-            break;
-        case 'panup':
-            action = 'skip';
-            break;
+    if(event.type.includes('left')) {
+        action = 'no';
+    } else if(event.type.includes('right')) {
+        action = 'yes';
+    } else if(event.type.includes('up')) {
+        action = 'skip';
     }
 
     return action;

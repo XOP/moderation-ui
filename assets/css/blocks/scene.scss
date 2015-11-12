@@ -21,6 +21,7 @@ cssg
 	@mixin cover;
 
 	text-align: center;
+	pointer-events: none;
 
 	transition: opacity .4s, transform .4s ease-out;
 
@@ -62,6 +63,7 @@ cssg
 		vertical-align: middle;
 
 		box-shadow: $sh-heavy;
+		pointer-events: none;
 		}
 	}
 

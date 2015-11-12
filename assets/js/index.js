@@ -17,7 +17,8 @@ import * as touch from 'touch';
 
 const ANIMATION_TIME = 300;
 const IS_TOUCH = Modernizr.touchevents;
-const PAN_THRESHOLD = 80;
+const PAN_THRESHOLD = 50;
+const SWIPE_VELOCITY = .35;
 
 let container = utils.find('.js-scene');
 
@@ -28,18 +29,6 @@ let controlYes = utils.find('.js-control_yes');
 let controlNo = utils.find('.js-control_no');
 let controlSkip = utils.find('.js-control_skip');
 
-let hammer = new Hammer(container);
-
-
-//
-// register touch events
-if(IS_TOUCH) {
-    hammer.get('pan').set({
-        threshold: PAN_THRESHOLD,
-        direction: Hammer.DIRECTION_ALL
-    });
-    hammer.on('panleft panright panup', nextImage);
-}
 
 //
 // scene setup
@@ -51,18 +40,38 @@ updateImageData(currentImage);
 // add next image
 scene.addImage(container, '__next');
 
+
 //
 // controls binding
-controlYes.addEventListener('click', nextImage);
-controlNo.addEventListener('click', nextImage);
-controlSkip.addEventListener('click', nextImage);
+controlYes.addEventListener('click', processNextImage);
+controlNo.addEventListener('click', processNextImage);
+controlSkip.addEventListener('click', processNextImage);
+
+
+//
+// register touch events
+let hammer = new Hammer(container);
+
+if(IS_TOUCH) {
+    hammer.get('pan').set({
+        threshold: PAN_THRESHOLD,
+        direction: Hammer.DIRECTION_ALL
+    });
+    hammer.get('swipe').set({
+        velocity: SWIPE_VELOCITY,
+        direction: Hammer.DIRECTION_ALL
+    });
+    hammer.on('swipeleft swiperight swipeup panleft panright panup', processNextImage);
+}
 
 
 /**
  * Manage next image
  * @param evt
  */
-function nextImage(evt) {
+function processNextImage(evt) {
+    hammer.stop();
+
     // resolve action type
     let action;
 
