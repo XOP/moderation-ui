@@ -24,17 +24,20 @@ var config = {
         noParse: [],
         preLoaders: [
             {test: /modernizr-custom\.js$/, loaders: ['script-loader']},
-            {test: /hammer\.js$/, loaders: ['script-loader']}
+            {test: /hammer\.js$/, loaders: ['script-loader']},
+            {
+                test: /\.jsx$|\.js$/,
+                include: [
+                    path.resolve(__dirname, "assets/js")
+                ],
+                exclude: [
+                    path.resolve(__dirname, "assets/js/lib"),
+                    /bundle\.js$/
+                ],
+                loader: 'eslint-loader'
+            }
         ],
         loaders: [
-//            {
-//                test: /\.js$/,
-//                exclude: [
-//                    path.resolve(__dirname, "assets/js/lib"),
-//                    /node_modules/
-//                ],
-//                loader: 'eslint-loader'
-//            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,

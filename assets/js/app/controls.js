@@ -6,7 +6,7 @@
 
 import * as utils from 'utils';
 
-let controlCont = utils.find('.js-control-cont');
+const controlCont = utils.find('.js-control-cont');
 
 
 /**
@@ -42,7 +42,7 @@ export function resolveAction(control) {
  */
 export function resolveKeypress(evt) {
     let action;
-    let key = evt.keyCode;
+    const key = evt.keyCode;
 
     switch(key) {
         case 37:

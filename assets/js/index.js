@@ -18,7 +18,7 @@ import * as touch from 'touch';
 const ANIMATION_TIME = 300;
 const IS_TOUCH = Modernizr.touchevents;
 const PAN_THRESHOLD = 50;
-const SWIPE_VELOCITY = .35;
+const SWIPE_VELOCITY = 0.35;
 const TOUCH_EVENTS = [
     'swipeleft',
     'swiperight',
@@ -28,14 +28,14 @@ const TOUCH_EVENTS = [
     'panup'
 ];
 
-let container = utils.find('.js-scene');
+const container = utils.find('.js-scene');
 
-let labelCurrent = utils.find('.js-label-current');
-let labelClaims = utils.find('.js-label-claims');
+const labelCurrent = utils.find('.js-label-current');
+const labelClaims = utils.find('.js-label-claims');
 
-let controlYes = utils.find('.js-control_yes');
-let controlNo = utils.find('.js-control_no');
-let controlSkip = utils.find('.js-control_skip');
+const controlYes = utils.find('.js-control_yes');
+const controlNo = utils.find('.js-control_no');
+const controlSkip = utils.find('.js-control_skip');
 
 
 //
@@ -43,6 +43,7 @@ let controlSkip = utils.find('.js-control_skip');
 
 // add current image
 let currentImage = scene.addImage(container, '__current');
+
 updateImageData(currentImage);
 
 // add next image
@@ -61,7 +62,7 @@ controlSkip.addEventListener('click', processNextImage);
 document.addEventListener('keyup', processNextImage);
 
 // touch events
-let hammer = new Hammer(container);
+const hammer = new Hammer(container);
 
 if(IS_TOUCH) {
     hammer.get('pan').set({

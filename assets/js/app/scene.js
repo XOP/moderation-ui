@@ -37,8 +37,8 @@ function formatClaims(number) {
  * @returns {*}
  */
 function demoUrlFormatter() {
-    var num = Math.round(Math.random() * (IMAGES_COLLECTION - 1) + 1);
-    var imgNumber = formatImageNumber(num);
+    let num = Math.round(Math.random() * (IMAGES_COLLECTION - 1) + 1);
+    let imgNumber = formatImageNumber(num);
 
     return `img/test/${imgNumber}.jpg`;
 }

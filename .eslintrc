@@ -1,3 +1,39 @@
 {
-    "extends": "xop"
+    "extends": "xop",
+
+    "globals": {
+        "Modernizr": true,
+        "Hammer": false
+    },
+
+    "env": {
+        "es6": true
+    },
+
+    "ecmaFeatures": {
+        "arrowFunctions": true,
+        "blockBindings": true,
+        "classes": true,
+        "defaultParams": true,
+        "destructuring": true,
+        "forOf": true,
+        "generators": false,
+        "modules": true,
+        "objectLiteralComputedProperties": true,
+        "objectLiteralDuplicateProperties": false,
+        "objectLiteralShorthandMethods": true,
+        "objectLiteralShorthandProperties": true,
+        "spread": true,
+        "superInFunctions": true,
+        "templateStrings": true,
+        "jsx": true
+    },
+
+    "rules": {
+        "arrow-spacing": 2,
+        "no-class-assign": 2,
+        "no-const-assign": 2,
+        "no-var": 2,
+        "prefer-const": 1
+    }
 }

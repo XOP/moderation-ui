@@ -4,9 +4,6 @@
  */
 
 
-import * as utils from 'utils';
-
-
 /**
  * Resolve action type
  * @param event
