@@ -19,6 +19,14 @@ const ANIMATION_TIME = 300;
 const IS_TOUCH = Modernizr.touchevents;
 const PAN_THRESHOLD = 50;
 const SWIPE_VELOCITY = .35;
+const TOUCH_EVENTS = [
+    'swipeleft',
+    'swiperight',
+    'swipeup',
+    'panleft',
+    'panright',
+    'panup'
+];
 
 let container = utils.find('.js-scene');
 
@@ -43,13 +51,16 @@ scene.addImage(container, '__next');
 
 //
 // controls binding
+
+// mouse events
 controlYes.addEventListener('click', processNextImage);
 controlNo.addEventListener('click', processNextImage);
 controlSkip.addEventListener('click', processNextImage);
 
+// keyboard events
+document.addEventListener('keyup', processNextImage);
 
-//
-// register touch events
+// touch events
 let hammer = new Hammer(container);
 
 if(IS_TOUCH) {
@@ -61,7 +72,7 @@ if(IS_TOUCH) {
         velocity: SWIPE_VELOCITY,
         direction: Hammer.DIRECTION_ALL
     });
-    hammer.on('swipeleft swiperight swipeup panleft panright panup', processNextImage);
+    hammer.on(TOUCH_EVENTS.join(' '), processNextImage);
 }
 
 
@@ -70,14 +81,18 @@ if(IS_TOUCH) {
  * @param evt
  */
 function processNextImage(evt) {
+    // stop handlers
     hammer.stop();
+    document.removeEventListener('keyup', processNextImage);
 
     // resolve action type
     let action;
 
     if(evt.type === 'click') {
         action = controls.resolveAction(evt.target);
-    } else {
+    } else if(evt.type === 'keyup') {
+        action = controls.resolveKeypress(evt);
+    } else if(~TOUCH_EVENTS.indexOf(evt.type)) {
         action = touch.resolveAction(evt);
     }
 
@@ -106,6 +121,9 @@ function processNextImage(evt) {
 
         // add next image to scene
         scene.addImage(container, '__next');
+
+        // enable controls
+        document.addEventListener('keyup', processNextImage);
 
         // release button block
         controls.enable();

@@ -92,6 +92,22 @@ body {
 	.controls {
 		flex: 1 1 12vh;
 		}
+
+	// global context
+	.touchevents & {
+		.label {
+			flex: 1 0 auto;
+			}
+
+		.scene {
+			flex: 1 0 80vh;
+			line-height: 80vh;
+			}
+
+		.controls {
+			display: none;
+			}
+		}
     }
 
 /* /Main */
