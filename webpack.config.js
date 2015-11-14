@@ -28,10 +28,10 @@ var config = {
             {
                 test: /\.jsx$|\.js$/,
                 include: [
-                    path.resolve(__dirname, "assets/js")
+                    path.resolve(__dirname, 'assets/js')
                 ],
                 exclude: [
-                    path.resolve(__dirname, "assets/js/lib"),
+                    path.resolve(__dirname, 'assets/js/lib'),
                     /bundle\.js$/
                 ],
                 loader: 'eslint-loader'
