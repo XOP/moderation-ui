@@ -12,11 +12,11 @@
 export function resolveAction(event) {
     let action;
 
-    if(event.type.includes('left')) {
+    if (event.type.includes('left')) {
         action = 'no';
-    } else if(event.type.includes('right')) {
+    } else if (event.type.includes('right')) {
         action = 'yes';
-    } else if(event.type.includes('up')) {
+    } else if (event.type.includes('up')) {
         action = 'skip';
     }
 

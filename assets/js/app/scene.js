@@ -5,21 +5,9 @@
 
 
 import * as utils from 'utils';
-
-const IMAGES_COLLECTION = 3;
-const CLAIMS_MAX = 20;
+import * as post from 'post';
 
 let imageNumber = 1;
-
-
-/**
- * Format index with leading zero
- * @param n
- * @returns {*}
- */
-function formatImageNumber(n) {
-    return n > 9 ? n : '0' + n;
-}
 
 
 /**
@@ -33,17 +21,6 @@ function formatClaims(number) {
 
 
 /**
- * Demo url string
- * @returns {*}
- */
-function demoUrlFormatter() {
-    let num = Math.round(Math.random() * (IMAGES_COLLECTION - 1) + 1);
-    let imgNumber = formatImageNumber(num);
-
-    return `img/test/${imgNumber}.jpg`;
-}
-
-/**
  * Add image to scene
  * @param parent
  * @returns {HTMLElement|*}
@@ -51,18 +28,19 @@ function demoUrlFormatter() {
 export function addImage(parent, klass) {
     let img = new Image();
     let imgWrap = document.createElement('div');
-    let url = demoUrlFormatter();
+
+    let data = post.getData();
 
     imgWrap.className = 'scene_img js-image ' + klass;
 
     // mock data
-    imgWrap.dataset.claims = Math.round(Math.random() * CLAIMS_MAX);
+    imgWrap.dataset.claims = data.post.complaints;
     imgWrap.dataset.number = imageNumber++;
 
     // add image to scene
     imgWrap.appendChild(img);
     parent.appendChild(imgWrap);
-    img.src = url;
+    img.src = data.url;
 
     return imgWrap;
 }

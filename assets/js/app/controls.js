@@ -44,7 +44,7 @@ export function resolveKeypress(evt) {
     let action;
     const key = evt.keyCode;
 
-    switch(key) {
+    switch (key) {
         case 37:
             action = 'no';
             break;
