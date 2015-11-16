@@ -3,7 +3,9 @@
 
     "globals": {
         "Modernizr": true,
-        "Hammer": false
+        "Hammer": false,
+        "fetch": true,
+        "require": true
     },
 
     "env": {
@@ -30,6 +32,9 @@
     },
 
     "rules": {
+        "no-invalid-this": 1,
+        "global-require": 1,
+
         "arrow-spacing": 2,
         "no-class-assign": 2,
         "no-const-assign": 2,

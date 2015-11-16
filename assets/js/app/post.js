@@ -4,6 +4,9 @@
  */
 
 
+// init preloading scripts
+import 'whatwg-fetch';
+
 import * as config from '../config';
 
 
@@ -59,28 +62,34 @@ function _genPostId() {
 
 
 /**
- * Demo data object
- * @returns {{total, post: {postId: number, complaints: number}, url: *}}
+ * Demo data
+ * @returns {Promise}
  * @private
  */
 function _genData() {
-    return {
-        total: _genTotal(),
-        post: {
-            postId: _genPostId(),
-            complaints: _genClaims()
-        },
-        url: _genUrl()
-    };
+    return new Promise(function(resolve) {
+        resolve({
+            total: _genTotal(),
+            post: {
+                postId: _genPostId(),
+                complaints: _genClaims()
+            },
+            url: _genUrl()
+        });
+    });
 }
 
 
+/**
+ * Prod data
+ * @returns {*}
+ * @private
+ */
 function _getData() {
-    if (Modernizr.fetch) {
-        console.log('supports fetch');
-    } else {
-        console.log('no fetch');
-    }
+    return fetch(config.URL)
+        .then(function(res) {
+            return res.json();
+        });
 }
 
 

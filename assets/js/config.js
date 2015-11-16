@@ -4,7 +4,21 @@
  */
 
 
-export const DEMO = true;
+let _cfg = false;
+let _demo = true;
+let _url = '';
+
+try {
+    _cfg = require('config.json');
+    _demo = false;
+    _url = _cfg.url;
+} catch (err) {
+    console.info(err + ' no config.json provided, DEMO MODE ON');
+}
+
+export const DEMO = _demo;
+export const URL = _url;
+
 
 export const IMAGES_COLLECTION = 3;
 export const CLAIMS_MAX = 20;

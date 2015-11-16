@@ -27,6 +27,9 @@
         },
         "deps" : {
             "normalize" : "node_modules/normalize.css"
+        },
+        "data" : {
+            "src" : "data"
         }
     }
 }

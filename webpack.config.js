@@ -17,7 +17,7 @@ var config = {
     resolve: {
         root: srcPath,
         extensions: ['', '.js', '.jsx', '.json', '.html'],
-        modulesDirectories: ['node_modules', paths.js.src + '/app', paths.js.src + '/lib'],
+        modulesDirectories: ['node_modules', paths.js.src + '/app', paths.js.src + '/lib', paths.data.src],
         alias: {}
     },
     module: {
@@ -25,6 +25,7 @@ var config = {
         preLoaders: [
             {test: /modernizr-custom\.js$/, loaders: ['script-loader']},
             {test: /hammer\.js$/, loaders: ['script-loader']},
+            {test: /fetch\.js$/, loaders: ['script-loader']},
             {
                 test: /\.jsx$|\.js$/,
                 include: [

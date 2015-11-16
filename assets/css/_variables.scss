@@ -112,13 +112,6 @@ $media-n: 1000px;
 	top: 0; left: 0; right: 0; bottom: 0;
 	}
 
-@define-mixin preloader {
-	min-height: 50px;
-	&:empty {
-		background: $c-white url(../img/anim/spinner.gif) no-repeat 50%;
-		}
-	}
-
 /* /Mixins */
 
 /* /Variables

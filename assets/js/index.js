@@ -3,6 +3,7 @@
  *
  */
 
+
 // init preloading scripts
 import 'modernizr-custom';
 import 'hammerjs';
@@ -31,9 +32,7 @@ const controlSkip = utils.find('.js-control_skip');
 // scene setup
 
 // add current image
-let currentImage = scene.addImage(container, '__current');
-
-updateImageData(currentImage);
+scene.addImage(container, '__current', updateImageData);
 
 // add next image
 scene.addImage(container, '__next');
@@ -53,7 +52,7 @@ document.addEventListener('keyup', processNextImage);
 // touch events
 const hammer = new Hammer(container);
 
-if(config.IS_TOUCH) {
+if (config.IS_TOUCH) {
     hammer.get('pan').set({
         threshold: config.PAN_THRESHOLD,
         direction: Hammer.DIRECTION_ALL
@@ -78,11 +77,11 @@ function processNextImage(evt) {
     // resolve action type
     let action;
 
-    if(evt.type === 'click') {
+    if (evt.type === 'click') {
         action = controls.resolveAction(evt.target);
-    } else if(evt.type === 'keyup') {
+    } else if (evt.type === 'keyup') {
         action = controls.resolveKeypress(evt);
-    } else if(~config.TOUCH_EVENTS.indexOf(evt.type)) {
+    } else if (~config.TOUCH_EVENTS.indexOf(evt.type)) {
         action = touch.resolveAction(evt);
     }
 
@@ -126,6 +125,8 @@ function processNextImage(evt) {
  * @param image
  */
 function updateImageData(image) {
-    labelClaims.innerText = scene.getClaims(image.dataset.claims);
-    labelCurrent.innerText = scene.getNumber(image.dataset.number);
+    let img = image || this;
+
+    labelClaims.innerText = scene.getClaims(img.dataset.claims);
+    labelCurrent.innerText = scene.getNumber(img.dataset.number);
 }

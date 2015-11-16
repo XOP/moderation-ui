@@ -25,24 +25,31 @@ function formatClaims(number) {
  * @param parent
  * @returns {HTMLElement|*}
  */
-export function addImage(parent, klass) {
+export function addImage(parent, klass, cb) {
     let img = new Image();
     let imgWrap = document.createElement('div');
 
-    let data = post.getData();
+    return post.getData().then(function(obj) {
+        let data = obj;
 
-    imgWrap.className = 'scene_img js-image ' + klass;
+        imgWrap.className = 'scene_img js-image ' + klass;
 
-    // mock data
-    imgWrap.dataset.claims = data.post.complaints;
-    imgWrap.dataset.number = imageNumber++;
+        // mock data
+        imgWrap.dataset.claims = data.post.complaints;
+        imgWrap.dataset.number = imageNumber++;
 
-    // add image to scene
-    imgWrap.appendChild(img);
-    parent.appendChild(imgWrap);
-    img.src = data.url;
+        // add image to scene
+        imgWrap.appendChild(img);
+        parent.appendChild(imgWrap);
+        img.src = data.url;
 
-    return imgWrap;
+        // callback
+        if (cb && typeof cb === 'function') {
+            cb.call(imgWrap);
+        }
+
+        return imgWrap;
+    });
 }
 
 
