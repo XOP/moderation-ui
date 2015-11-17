@@ -12,8 +12,6 @@ cssg
 .scene {
 	position: relative;
 	backface-visibility: hidden;
-
-	// todo: preloader
 	}
 
 .scene_img {
@@ -23,6 +21,15 @@ cssg
 	pointer-events: none;
 
 	transition: opacity .4s, transform .4s ease-out;
+
+
+	&.__loading {
+		background-color: transparent;
+		background-image: svg("$(path-img)anim/preloader");
+		background-size: 25% auto;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		}
 
 	&.__current {
 		z-index: 20;

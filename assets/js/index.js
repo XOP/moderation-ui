@@ -16,11 +16,14 @@ import * as scene from 'scene';
 import * as controls from 'controls';
 import * as touch from 'touch';
 import * as config from 'config';
+import * as post from 'post';
 
 
-const container = utils.find('.js-scene');
+const container = scene.getContainer();
+let totalImages = 0;
 
 const labelCurrent = utils.find('.js-label-current');
+const labelTotal = utils.find('.js-label-total');
 const labelClaims = utils.find('.js-label-claims');
 
 const controlYes = utils.find('.js-control_yes');
@@ -32,10 +35,18 @@ const controlSkip = utils.find('.js-control_skip');
 // scene setup
 
 // add current image
-scene.addImage(container, '__current', updateImageData);
+scene.addImage('__current', updateImageData);
 
 // add next image
-scene.addImage(container, '__next');
+scene.addImage('__next');
+
+// images total number
+post.getData().then(function(obj) {
+    let data = obj;
+
+    totalImages = parseInt(data.total, 10);
+    labelTotal.innerText = totalImages;
+});
 
 
 //
@@ -109,7 +120,7 @@ function processNextImage(evt) {
         currentImage.parentNode.removeChild(currentImage);
 
         // add next image to scene
-        scene.addImage(container, '__next');
+        scene.addImage('__next');
 
         // enable controls
         document.addEventListener('keyup', processNextImage);
@@ -126,7 +137,16 @@ function processNextImage(evt) {
  */
 function updateImageData(image) {
     let img = image || this;
+    let currentNumber = scene.getNumber(img.dataset.number);
 
+    // update image claims value
     labelClaims.innerText = scene.getClaims(img.dataset.claims);
-    labelCurrent.innerText = scene.getNumber(img.dataset.number);
+
+    // check image number and reset if needed
+    if (parseInt(currentNumber, 10) === totalImages) {
+        scene.resetImageNumber();
+    }
+
+    // update scene counter
+    labelCurrent.innerText = currentNumber;
 }

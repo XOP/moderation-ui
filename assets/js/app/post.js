@@ -93,6 +93,10 @@ function _getData() {
 }
 
 
+/**
+ * Retrieve image JSON data
+ * @returns {*}
+ */
 export function getData() {
     let data;
 

@@ -6,8 +6,11 @@
 
 import * as utils from 'utils';
 import * as post from 'post';
+import * as config from '../config';
 
 let imageNumber = 1;
+
+const container = getContainer();
 
 
 /**
@@ -16,7 +19,7 @@ let imageNumber = 1;
  * @returns {string}
  */
 function formatClaims(number) {
-    return number === 1 ? 'claim' : 'claims';
+    return parseInt(number, 10) === 1 ? 'claim' : 'claims';
 }
 
 
@@ -25,28 +28,37 @@ function formatClaims(number) {
  * @param parent
  * @returns {HTMLElement|*}
  */
-export function addImage(parent, klass, cb) {
+export function addImage(klass, cb) {
     let img = new Image();
     let imgWrap = document.createElement('div');
+
+    // add image to scene
+    imgWrap.className = 'scene_img js-image ' + klass;
+    imgWrap.classList.add('__loading');
+    imgWrap.appendChild(img);
+    container.appendChild(imgWrap);
 
     return post.getData().then(function(obj) {
         let data = obj;
 
-        imgWrap.className = 'scene_img js-image ' + klass;
+        // todo: timeout loading error
 
-        // mock data
+        // update item data
         imgWrap.dataset.claims = data.post.complaints;
         imgWrap.dataset.number = imageNumber++;
 
-        // add image to scene
-        imgWrap.appendChild(img);
-        parent.appendChild(imgWrap);
+        // set src
         img.src = data.url;
 
         // callback
         if (cb && typeof cb === 'function') {
             cb.call(imgWrap);
         }
+
+        // stop loading
+        setTimeout(function() {
+            imgWrap.classList.remove('__loading');
+        }, config.ANIMATION_TIME);
 
         return imgWrap;
     });
@@ -70,6 +82,15 @@ export function updateState(image) {
  */
 export function getImageClass(action) {
     return '__' + action;
+}
+
+
+/**
+ * DOM element scene contatiner
+ * @returns {*|Node}
+ */
+export function getContainer() {
+    return utils.find('.js-scene');
 }
 
 
@@ -108,4 +129,12 @@ export function getClaims(claims) {
  */
 export function getNumber(val) {
     return val;
+}
+
+
+/**
+ * Resets image number
+ */
+export function resetImageNumber() {
+    return imageNumber = 1;
 }
