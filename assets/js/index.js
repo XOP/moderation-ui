@@ -35,10 +35,7 @@ const controlSkip = utils.find('.js-control_skip');
 // scene setup
 
 // add current image
-scene.addImage('__current', updateImageData);
-
-// add next image
-scene.addImage('__next');
+scene.addImage('__current', null, updateImageData);
 
 // images total number
 post.getData().then(function(obj) {
@@ -85,6 +82,9 @@ function processNextImage(evt) {
     hammer.stop();
     document.removeEventListener('keyup', processNextImage);
 
+    // get current images
+    let currentImage = scene.getCurrentImage();
+
     // resolve action type
     let action;
 
@@ -96,11 +96,17 @@ function processNextImage(evt) {
         action = touch.resolveAction(evt);
     }
 
-    let imageClass = scene.getImageClass(action);
+    // add next image to scene
+    scene.addImage('__next', {
+        postId: currentImage.dataset.id,
+        action: action
+    });
 
-    // get images
-    let currentImage = scene.getCurrentImage();
+    // get next image
     let nextImage = scene.getNextImage();
+
+    // assign animation type
+    let imageClass = scene.getImageClass(action);
 
     // block controls
     controls.disable();
@@ -108,19 +114,16 @@ function processNextImage(evt) {
     // apply action to current image
     currentImage.classList.add(imageClass);
 
-    // update state of next image
-    scene.updateState(nextImage);
-
-    // update image data
-    updateImageData(nextImage);
-
     // animation finally
     setTimeout(function() {
         // remove current image
         currentImage.parentNode.removeChild(currentImage);
 
-        // add next image to scene
-        scene.addImage('__next');
+        // update state of next image
+        scene.updateState(nextImage);
+
+        // update image data
+        updateImageData(nextImage);
 
         // enable controls
         document.addEventListener('keyup', processNextImage);

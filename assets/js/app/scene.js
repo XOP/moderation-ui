@@ -28,7 +28,7 @@ function formatClaims(number) {
  * @param parent
  * @returns {HTMLElement|*}
  */
-export function addImage(klass, cb) {
+export function addImage(klass, params, cb) {
     let img = new Image();
     let imgWrap = document.createElement('div');
 
@@ -38,7 +38,7 @@ export function addImage(klass, cb) {
     imgWrap.appendChild(img);
     container.appendChild(imgWrap);
 
-    return post.getData().then(function(obj) {
+    return post.getData(params).then(function(obj) {
         let data = obj;
 
         // todo: timeout loading error
@@ -46,9 +46,10 @@ export function addImage(klass, cb) {
         // update item data
         imgWrap.dataset.claims = data.post.complaints;
         imgWrap.dataset.number = imageNumber++;
+        imgWrap.dataset.id = data.post.postId;
 
         // set src
-        img.src = data.url;
+        img.src = data.url !== null ? data.url : config.STUB_SRC;
 
         // callback
         if (cb && typeof cb === 'function') {

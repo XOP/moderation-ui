@@ -28,3 +28,20 @@ export function find(expr, container) {
 export function findAll(expr, container) {
     return [].slice.call((container || document).querySelectorAll(expr));
 }
+
+
+/**
+ * Serialize object
+ * @param obj
+ * @returns {string}
+ */
+export function serialize(obj) {
+    let query = [];
+
+    for (let p in obj)
+        if (obj.hasOwnProperty(p)) {
+            query.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+        }
+
+    return query.join('&');
+}

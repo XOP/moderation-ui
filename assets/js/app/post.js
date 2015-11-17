@@ -7,6 +7,7 @@
 // init preloading scripts
 import 'whatwg-fetch';
 
+import * as utils from 'utils';
 import * as config from '../config';
 
 
@@ -85,7 +86,13 @@ function _genData() {
  * @returns {*}
  * @private
  */
-function _getData() {
+function _getData(params) {
+    if (params) {
+        let query = utils.serialize(params);
+
+        // todo: fetch w/ query
+    }
+
     return fetch(config.URL)
         .then(function(res) {
             return res.json();
@@ -97,13 +104,13 @@ function _getData() {
  * Retrieve image JSON data
  * @returns {*}
  */
-export function getData() {
+export function getData(params) {
     let data;
 
     if (config.DEMO) {
         data = _genData();
     } else {
-        data = _getData();
+        data = _getData(params);
     }
 
     return data;
