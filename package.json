@@ -1,7 +1,8 @@
 {
   "name": "moderation-ui",
   "version": "0.8.5",
-  "author": "stewiekillsloiss@gmail.com",
+  "author": "Evgeny Khoroshilov <stewiekillsloiss@gmail.com> (https://github.com/XOP)",
+  "description": "Images moderation interface",
   "dependencies": {
     "hammerjs": "^2.0.4",
     "normalize.css": "^3.0.3"
@@ -46,5 +47,10 @@
     "script-loader": "^0.6.1",
     "webpack": "^1.12.2",
     "whatwg-fetch": "^0.10.1"
+  },
+  "scripts": {
+    "build": "gulp build --p",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint assets\/js --ignore-pattern assets\/js\/lib\/*"
   }
 }
