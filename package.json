@@ -1,6 +1,6 @@
 {
   "name": "moderation-ui",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "author": "Evgeny Khoroshilov <stewiekillsloiss@gmail.com> (https://github.com/XOP)",
   "description": "Images moderation interface",
   "dependencies": {

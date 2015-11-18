@@ -38,8 +38,8 @@ export const ANIMATION_TIME = 300;
 //
 // Hammer settings
 export const IS_TOUCH = Modernizr.touchevents;
-export const PAN_THRESHOLD = 50;
-export const SWIPE_VELOCITY = 0.35;
+export const PAN_THRESHOLD = 90;
+export const SWIPE_VELOCITY = 0.85;
 export const TOUCH_EVENTS = [
     'swipeleft',
     'swiperight',

@@ -81,31 +81,37 @@ body {
 		}
 
 	.label {
-		flex: 0 1 auto;
+		flex: 1 0 auto;
 		}
 
 	.scene {
-		flex: 1 0 75vh;
-		line-height: 75vh;
+		flex: 1 0 65vh;
+		line-height: 65vh;
 		}
 
 	.controls {
-		flex: 1 1 12vh;
+		flex: 1 1 15vh;
 		}
 
 	// global context
 	.touchevents & {
-		.label {
-			flex: 1 0 auto;
-			}
-
-		.scene {
-			flex: 1 0 80vh;
-			line-height: 80vh;
-			}
-
 		.controls {
-			display: none;
+			margin-bottom: 10vh; // ios action bar
+			}
+
+		@if $controls-always == false {
+			.label {
+				flex: 1 0 auto;
+				}
+
+			.scene {
+				flex: 1 0 80vh;
+				line-height: 80vh;
+				}
+
+			.controls {
+				display: none;
+				}
 			}
 		}
     }
