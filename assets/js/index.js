@@ -34,6 +34,9 @@ const controlSkip = utils.find('.js-control_skip');
 //
 // scene setup
 
+// hello user!
+// scene.toggleNotification('Hello there!\n\nAre you ready to do some moderation?');
+
 // add current image
 scene.addImage('__current', null, updateImageData);
 
@@ -43,6 +46,8 @@ post.getData().then(function(obj) {
 
     totalImages = parseInt(data.total, 10);
     labelTotal.innerText = totalImages;
+}).catch(function(err) {
+    scene.showError(err);
 });
 
 
@@ -151,3 +156,4 @@ function updateImageData(image) {
     // update scene counter
     labelCurrent.innerText = currentNumber;
 }
+

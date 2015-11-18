@@ -45,8 +45,6 @@ export function addImage(klass, params, cb) {
             console.log('RESPONSE: ' + JSON.stringify(obj));
         }
 
-        // todo: timeout loading error
-
         // update item data
         imgWrap.dataset.claims = data.post.complaints;
         imgWrap.dataset.number = imageNumber++;
@@ -66,6 +64,8 @@ export function addImage(klass, params, cb) {
         }, config.ANIMATION_TIME);
 
         return imgWrap;
+    }).catch(function(err) {
+        showError(err);
     });
 }
 
@@ -142,4 +142,40 @@ export function getNumber(val) {
  */
 export function resetImageNumber() {
     return imageNumber = 1;
+}
+
+
+/**
+ * Show or hide notification
+ * @param msg
+ */
+export function toggleNotification(msg) {
+    const ntf = utils.find('.js-notification');
+    const ntfText = utils.find('.js-notification-text');
+    const ntfControl = utils.find('.js-notification-control');
+
+    if (config.DEBUG) {
+        console.log('MESSAGE: ' + msg);
+    }
+
+    let active = (typeof msg === 'undefined' || msg instanceof Event);
+
+    if (active) {
+        ntfText.innerText = '';
+        ntf.classList.remove('__active');
+        ntfControl.removeEventListener('click', toggleNotification);
+    } else {
+        ntfText.innerText = msg;
+        ntf.classList.add('__active');
+        ntfControl.addEventListener('click', toggleNotification);
+    }
+}
+
+
+/**
+ * Notification wrapper for errors
+ * @param msg
+ */
+export function showError(msg) {
+    toggleNotification('Something went wrong :(\n\nPleas reload application and bear with us!\n\n' + msg);
 }

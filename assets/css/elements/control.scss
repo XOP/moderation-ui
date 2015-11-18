@@ -41,6 +41,11 @@ cssg
         }
 
     // context mod
+    .control__ok & {
+        background-image: svg("$(path-img)buttons/ok");
+        }
+
+    // context mod
     .control__negative & {
         background-image: svg("$(path-img)buttons/no");
         }

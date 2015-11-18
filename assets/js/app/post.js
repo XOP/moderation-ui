@@ -8,6 +8,7 @@
 import 'whatwg-fetch';
 
 import * as utils from 'utils';
+import * as scene from 'scene';
 import * as config from '../config';
 
 
@@ -103,7 +104,21 @@ function _getData(params) {
         credentials: 'include' // sending cookies in the CORS request
     })
         .then(function(res) {
+            if (res.status >= 200 && res.status < 300) {
+                return res;
+            } else {
+                let err = new Error(res.statusText);
+
+                err.response = res;
+                throw err;
+            }
+        })
+        .then(function(res) {
             return res.json();
+        })
+        .catch(function(err) {
+            scene.showError('Data request error:\n' + err);
+            return false;
         });
 }
 

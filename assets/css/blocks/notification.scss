@@ -1,0 +1,77 @@
+/* Notification
+---------------------------------------------------------------------------------- */
+
+/*
+cssg
+
+	notification                     __active
+	    notification_cnt
+            notification_tx
+                ...
+
+            notification_controls
+*/
+
+.notification {
+    @mixin cover;
+    z-index: 100;
+
+    bottom: 100vh;
+    overflow: hidden;
+
+    background: rgba(78, 199, 25, 0.8);
+
+    &.__active {
+        bottom: 0;
+        }
+    }
+
+.notification_cnt {
+    position: absolute;
+    box-sizing: border-box;
+
+    left: 10vw;
+    width: 80vw;
+
+    top: 50%;
+    transform: translateY(-120%);
+    padding: $grid-3 $grid-2 $grid-2;
+
+    border-radius: $rad-moder;
+    background: $c-base;
+    box-shadow: $sh-normal;
+
+    transition: .3s transform ease-in-out;
+
+    @media(--m) {
+        padding: $grid-4 $grid-4 $grid-3;
+        }
+
+
+    // context
+    .notification.__active & {
+        transform: translateY(-55%);
+        }
+    }
+
+.notification_tx {
+    color: $c-darkest;
+    font-size: $fs-normal;
+    line-height: $lh-head;
+
+    max-width: 100%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: center;
+
+    @media(--m) {
+        font-size: $fs-l;
+        }
+    }
+
+.notification_controls {
+    padding-top: $grid-2;
+    }
+
+/* /Notification
+---------------------------------------------------------------------------------- */
