@@ -24,7 +24,12 @@ export const URL = _url;
 export const IMAGES_COLLECTION = 3;
 export const CLAIMS_MAX = 20;
 export const POST_SEED = 1000000;
+
+//
+// DEV helpers
 export const STUB_SRC = 'img/test/01.jpg';
+export const DEBUG = true;
+
 
 //
 // CSS relevant constants

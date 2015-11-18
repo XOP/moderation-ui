@@ -87,13 +87,21 @@ function _genData() {
  * @private
  */
 function _getData(params) {
+    let url = config.URL;
+
     if (params) {
         let query = utils.serialize(params);
 
-        // todo: fetch w/ query
+        url = url + '?' + query;
+
+        if (config.DEBUG) {
+            console.log('QUERY: ' + query);
+        }
     }
 
-    return fetch(config.URL)
+    return fetch(url, {
+        credentials: 'include' // sending cookies in the CORS request
+    })
         .then(function(res) {
             return res.json();
         });

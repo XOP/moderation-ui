@@ -97,10 +97,11 @@ function processNextImage(evt) {
     }
 
     // add next image to scene
+    // and update image data
     scene.addImage('__next', {
         postId: currentImage.dataset.id,
         action: action
-    });
+    }, updateImageData);
 
     // get next image
     let nextImage = scene.getNextImage();
@@ -121,9 +122,6 @@ function processNextImage(evt) {
 
         // update state of next image
         scene.updateState(nextImage);
-
-        // update image data
-        updateImageData(nextImage);
 
         // enable controls
         document.addEventListener('keyup', processNextImage);

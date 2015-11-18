@@ -41,6 +41,10 @@ export function addImage(klass, params, cb) {
     return post.getData(params).then(function(obj) {
         let data = obj;
 
+        if (config.DEBUG) {
+            console.log('RESPONSE: ' + JSON.stringify(obj));
+        }
+
         // todo: timeout loading error
 
         // update item data
