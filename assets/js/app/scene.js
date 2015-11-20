@@ -177,5 +177,5 @@ export function toggleNotification(msg) {
  * @param msg
  */
 export function showError(msg) {
-    toggleNotification('Something went wrong :(\n\nPleas reload application and bear with us!\n\n' + msg);
+    toggleNotification('Something went wrong :(\n\nPlease reload application and bear with us!\n\n' + msg);
 }
