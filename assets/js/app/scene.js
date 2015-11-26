@@ -41,6 +41,13 @@ export function addImage(klass, params, cb) {
     return post.getData(params).then(function(obj) {
         let data = obj;
 
+        // check if no images
+        if (data === null || Object.keys(data).length === 0) {
+            toggleNotification('Well done!\n\nNo new images, please come back later!');
+            
+            return;
+        }
+
         if (config.DEBUG) {
             console.log('RESPONSE: ' + JSON.stringify(obj));
         }
